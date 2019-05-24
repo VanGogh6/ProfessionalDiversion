@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-2 col-lg-4">
+
+        </div>
+        <div class="col-sm-8 col-lg-4">
+            <form class="form-signin text-center" th:action="login" th:method="post" action="/login">
+                <img class="mb-4" src="asserts/img/lolo.jpg" th:src="@{asserts/img/lo.jpg}" alt="" width="120" height="120">
+                <h1 class="h3 mb-3 font-weight-bold text-success">WELCOME</h1>
+                <p style="color: #ff0021" th th:text="${msg}" th:if="${not #strings.isEmpty(msg)}">&nbsp;</p>
+                <label class="sr-only">用户</label>
+                <input style="border-top: 0px;border-left: 0px;border-right: 0px;" type="text" name="account" class="form-control" placeholder="用户">
+                <p>&nbsp;</p>
+                <label class="sr-only" >密码</label>
+                <input style="border-top: 0px;border-left: 0px;border-right: 0px;" type="password" name="password" class="form-control" placeholder="密码">
+                <button class="btn btn-lg btn-primary btn-block mt-5" type="submit" >登录</button>
+                <p class="mt-5 mb-3 text-muted">© 2019</p>
+                <a class="btn btn-sm">黑龙江八一农垦大学</a>
+                <a class="btn btn-sm">学生课设</a>
+            </form>
+        </div>
+        <div class="col-sm-2 col-lg-4">
+
+        </div>
+    </div>
+</body>
+</html>
