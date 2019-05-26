@@ -25,4 +25,14 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll(pageable);
     }
 
+    @Override
+    public void deleteStuBySid(String sid) {
+        try {
+            int i = Integer.parseInt(sid);
+            studentRepository.deleteById(i);
+        }catch(Exception e){
+
+        }
+    }
+
 }

@@ -11,27 +11,51 @@
 </head>
 <body>
 <div>
-
-    <table class="table table-hover table-success">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>学号</th>
             <th>姓名</th>
             <th>学院</th>
-            <th>专业</th>
+            <th>填写志愿信息</th>
+            <th>最终确定专业</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-            <td>john@example.com</td>
-            <th><a class="btn btn-danger">删除</a></th>
+        <tr th:each="student : ${studentList}">
+            <td th:text="${student.account}">20164081101</td>
+            <td th:text="${student.name}">张三</td>
+            <td th:text="${student.college!=null?student.college.name:'未选择'}"></td>
+            <td th:text="${((student.wish)==null || (student.wish)=='')?'未填写':(student.wish)}"></td>
+            <td th:text="${(student.major)!=null ? (student.major.name) : '未分配'}"></td>
+            <td>
+                <a class="btn btn-danger" th:href="${#servletContext.contextPath}+'/user/delete?sid='+${student.sid}" onclick="javascript:return confirm('是否要删除?');">删除</a>
+            </td>
         </tr>
         </tbody>
     </table>
+    <div class="container">
+        <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#">共[[${pages}]]页</a></li>
+            <li class="page-item"><a class="page-link" th:if="${page!=1}" th:href="${#servletContext.contextPath}+'/user/studentlist?page=1'" href="#">首页</a></li>
+            <li class="page-item"><a class="page-link" th:if="${page!=1}" th:href="${#servletContext.contextPath}+'/user/studentlist?page='+${page-1}" href="#" >上一页</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">第[[${page}]]页</a></li>
+            <li class="page-item"><a class="page-link" th:if="${page!=pages}" th:href="${#servletContext.contextPath}+'/user/studentlist?page='+${page+1}" href="#">下一页</a></li>
+            <li class="page-item"><a class="page-link" th:if="${page<pages}" th:href="${#servletContext.contextPath}+'/user/studentlist?page='+${pages}" href="#">尾页</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">每页[[${elements}]]条</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">共计[[${totals}]]条</a></li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li class="page-item">
+                <form action="" method="post">
+                    <p class="page-item page-link  float-left text-black-50">第</p>
+                    <input name="page" class="page-link w-25 float-left">
+                    <p class="page-link  float-left text-black-50">页</p>
+                    <button type="submit"  class="btn btn-success page-link float-left">跳 转</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

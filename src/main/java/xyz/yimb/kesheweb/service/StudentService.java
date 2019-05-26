@@ -17,4 +17,6 @@ public interface StudentService {
     public Student getByAccountAndPassword(String account, String password);
 
     Page<Student> getMajorAndCollege(Pageable pageable);
+
+    void deleteStuBySid(String sid);
 }

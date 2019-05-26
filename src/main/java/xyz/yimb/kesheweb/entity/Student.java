@@ -11,16 +11,11 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sid;//主键
-    /**
-     * 学号，也是登录账号
-     */
     private String account;//学号
-
     private String password;//密码
-
     private String name;//姓名
-
     private String phone;//电话
+    private String wish;//志愿信息
 
     //配置学生和学院多对一映射
     @Transient
@@ -45,6 +40,8 @@ public class Student {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
+                ", wish='" + wish + '\'' +
+                ", cid=" + cid +
                 ", mid=" + mid +
                 '}';
     }
