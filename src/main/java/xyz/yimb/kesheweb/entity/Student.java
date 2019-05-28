@@ -20,6 +20,7 @@ public class Student {
     //配置学生和学院多对一映射
     @Transient
     private Integer cid;//学院id   标识所在学校，选专业时只能选择本学院的专业，要想选其他专业只能先转学院
+
     @ManyToOne(targetEntity =College.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "cid")
     private College college;

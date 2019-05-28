@@ -79,4 +79,10 @@ public class StudentTest {
             System.out.println(list.get(i));
         }
     }
+
+    @Test
+    @Transactional
+    public void t5(){
+
+    }
 }
