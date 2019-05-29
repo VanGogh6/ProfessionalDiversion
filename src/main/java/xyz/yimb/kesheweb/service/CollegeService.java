@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface CollegeService {
     List<College> getAll();
+
+    boolean deleteCollege(Integer cid);
+
+    boolean insertCollege(College college);
+
+    College getCollegeByCid(Integer cid);
 }

@@ -11,7 +11,6 @@ import java.util.List;
 public class College {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cid;
 
     private String name;

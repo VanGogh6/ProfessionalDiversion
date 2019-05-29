@@ -29,26 +29,25 @@
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
 
                 <li class="layui-nav-item">
-                    <a href="javascript:;">学生信息</a>
+                    <a href="javascript:;">学生管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="user/studentlist"  target="menuFrame">显示信息</a></dd>
-                        <dd><a href="user/searchPre"  target="menuFrame">查询修改</a></dd>
+                        <dd><a href="user/studentlist"  th:href="${#servletContext.contextPath}+'/user/studentlist'"  target="menuFrame">显示信息</a></dd>
+                        <dd><a href="user/searchPre"  th:href="${#servletContext.contextPath}+'/user/searchPre'"    target="menuFrame">查询修改</a></dd>
                     </dl>
                 </li>
 
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">学院信息</a>
+                    <a href="javascript:;">专业管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"  target="menuFrame">显示信息</a></dd>
+                        <dd><a href="javascript:;" th:href="${#servletContext.contextPath}+'/user/major/listAll'" target="menuFrame">显示信息</a></dd>
                         <dd><a href="javascript:;"  target="menuFrame">查询修改</a></dd>
                     </dl>
                 </li>
 
                 <li class="layui-nav-item">
-                    <a href="javascript:;">专业信息</a>
+                    <a class="" href="javascript:;">学院管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"  target="menuFrame">显示信息</a></dd>
-                        <dd><a href="javascript:;"  target="menuFrame">查询修改</a></dd>
+                        <dd><a href="javascript:;" th:href="${#servletContext.contextPath}+'/user/college/collegelist'" target="menuFrame">显示信息</a></dd>
                     </dl>
                 </li>
 

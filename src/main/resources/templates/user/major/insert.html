@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="m-3" th:action="${#servletContext.contextPath}+'/user/major/insertmajor'" th:method="get">
+        <div class="form-group">
+            <h3 for="sel1" class="text-success">选择学院&nbsp;&nbsp;&nbsp;[[${msg}]]</h3>
+            <select class="form-control" id="sel1" name="cid">
+                <div th:each="college:${colleges}">
+                    <option th:value="${college.cid}">[[${college.name}]]</option>
+                </div>
+            </select>
+        </div>
+        <h3 class="text-success">请输入以下信息</h3>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">专业名称</span>
+            </div>
+            <input name="name" type="text" class="form-control" placeholder="设置专业名称">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">预招人数</span>
+            </div>
+            <input name="number" type="text" class="form-control" th:value="0" placeholder="专业预招人数">
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">添加</button>
+    </form>
+</div>
+</body>
+</html>

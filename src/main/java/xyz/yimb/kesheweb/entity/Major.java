@@ -15,7 +15,7 @@ public class Major {
     private Integer mid;//编号主键
     private String name;//专业名称名
     private Integer number;//专业招收总人数
-
+    private Integer nownumber;//实际招收人数
     @Transient
     private Integer cid;//学院id
 
@@ -35,6 +35,7 @@ public class Major {
                 "mid=" + mid +
                 ", name='" + name + '\'' +
                 ", number=" + number +
+                ", nownumber=" + nownumber +
                 ", cid=" + cid +
                 '}';
     }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="m-3">
+        <div class="form-group">
+            <label for="sel1" class="text-success">选择学院&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-danger">[[${msg}]]</span></label>
+            <select class="form-control" id="sel1" name="cid">
+                <div th:each="college:${colleges}">
+                    <option selected th:if="${college.cid}==${cid}" th:value="${college.cid}">[[${college.name}]]</option>
+                    <option th:if="${college.cid}!=${cid}" th:value="${college.cid}">[[${college.name}]]</option>
+                </div>
+            </select>
+        </div>
+        <div class="form-group">
+           <button type="submit" class="btn btn-primary">确定查询</button>
+            <a  class="btn btn-success" th:href="${#servletContext.contextPath}+'/user/major/insertPre'">添加专业</a>
+        </div>
+    </form>
+
+    <table class="table table-hover text-center">
+        <thead>
+            <tr>
+                <th>专业编号</th>
+                <th>专业名称</th>
+                <th>专业预招人数</th>
+                <th>已分配人数</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody th:if="${majors}!=null">
+            <tr th:each="major : ${majors}">
+                <td th:text="${major.mid}"></td>
+                <td th:text="${major.name}"></td>
+                <td th:text="${major.number}"></td>
+                <td th:text="${major.nownumber}"></td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-primary"  th:href="${#servletContext.contextPath}+'/user/major/updatePre?mid='+${major.mid}+'&cid='+${cid}" >修改预招人数</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-danger" th:href="${#servletContext.contextPath}+'/user/major/delete?mid='+${major.mid}+'&cid='+${cid}"  onclick="return confirm('确定要删除吗')">删除专业</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

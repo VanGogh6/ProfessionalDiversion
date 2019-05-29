@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.yimb.kesheweb.entity.College;
-import xyz.yimb.kesheweb.entity.Major;
 import xyz.yimb.kesheweb.entity.Student;
 import xyz.yimb.kesheweb.service.CollegeService;
-import xyz.yimb.kesheweb.service.MajorService;
 import xyz.yimb.kesheweb.service.StudentService;
-import xyz.yimb.kesheweb.service.impl.MajorServiceImpl;
 import xyz.yimb.kesheweb.utils.WebUtils;
 
 import javax.servlet.ServletOutputStream;
@@ -34,9 +31,6 @@ public class UserStudentController {
 
     @Autowired
     private CollegeService collegeServiceImpl;
-
-    @Autowired
-    private MajorService majorServiceImpl;
 
     @RequestMapping("studentlist")
     public String getStudentList(String page, String size, HttpServletRequest req){
@@ -81,7 +75,7 @@ public class UserStudentController {
         req.setAttribute("totals",totals);//总条数
         List<Student> studentList = list.getContent();
         req.setAttribute("studentList",studentList);
-        return "/user/studentlist";
+        return "/user/student/studentlist";
     }
 
     /**
