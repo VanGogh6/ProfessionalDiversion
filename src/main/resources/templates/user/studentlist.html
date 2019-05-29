@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
-    <link rel="stylesheet" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
-    <script type="text/javascript" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         function checkAll() {
             var selectFlag = document.getElementsByName("selectFlag");
@@ -64,6 +64,7 @@
                 </th>
                 <th>学号</th>
                 <th>姓名</th>
+                <th>成绩</th>
                 <th>学院</th>
                 <th>填写志愿信息</th>
                 <th>最终确定专业</th>
@@ -77,6 +78,7 @@
                 </td>
                 <td th:text="${student.account}">20164081101</td>
                 <td th:text="${student.name}">张三</td>
+                <td th:text="${student.grade}">0</td>
                 <td th:text="${student.college!=null?student.college.name:'未选择'}"></td>
                 <td th:text="${((student.wish)==null || (student.wish)=='')?'未填写':(student.wish)}"></td>
                 <td th:text="${(student.major)!=null ? (student.major.name) : '未分配'}"></td>

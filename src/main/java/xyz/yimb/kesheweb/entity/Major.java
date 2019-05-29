@@ -1,10 +1,6 @@
 package xyz.yimb.kesheweb.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,9 +13,7 @@ public class Major {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer mid;//编号主键
-
     private String name;//专业名称名
-
     private Integer number;//专业招收总人数
 
     @Transient

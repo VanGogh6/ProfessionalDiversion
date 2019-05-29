@@ -2,7 +2,6 @@ package xyz.yimb.kesheweb.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.multipart.MultipartFile;
 import xyz.yimb.kesheweb.entity.Student;
 
 import java.io.InputStream;
@@ -44,4 +43,14 @@ public interface StudentService {
     boolean importData(InputStream is,String filename);
 
     List<Student> getAllStudent();
+
+    Student getStuByAccount(String account);
+
+    boolean resetPwd(Integer sid);
+
+    Student getStuBySid(Integer sid);
+
+    boolean updateCid(Integer sid, Integer cid);
+
+    boolean updateMidBySid(Integer mid, Integer sid);
 }

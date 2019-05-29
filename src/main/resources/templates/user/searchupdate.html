@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
-    <link rel="stylesheet" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
-    <script type="text/javascript" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function resetPwd() {
+            var b=window.confirm("重置密码为1，确定重置学生密码？");
+            if (b){
+                document.repwd.submit();
+            }
+        }
+        function resetCollege() {
+            document.recolg.submit();
+        }
+        
+        function resetMajor() {
+            document.reMajor.submit();
+        }
+    </script>
 </head>
 <body>
-
+<div class="container">
+    <h4 class="text-success mt-5">基本信息管理</h4>
+    <form class="form-inline mt-2" th:action="${#servletContext.contextPath}+'/user/search'" th:method="get">
+        <label >输入学号</label>
+        <input type="text" class="form-control" name="account">
+        <button type="submit" class="btn btn-primary">搜索</button>&nbsp;&nbsp;<h5 class="text-danger">[[${msg}]]</h5>
+    </form>
+    <div th:if="${student!=null}" class="mt-5">
+        <form name="repwd" th:method="get" th:action="${#servletContext.contextPath}+'/user/resetPwd'">
+            <input type="hidden" name="sid" th:value="${student.sid}">
+        </form>
+        <form name="recolg" th:method="get"  th:action="${#servletContext.contextPath}+'/user/resetColPre'">
+            <input type="hidden" name="sid" th:value="${student.sid}">
+        </form>
+        <form name="reMajor" th:method="get"  th:action="${#servletContext.contextPath}+'/user/resetMajorPre'">
+            <input type="hidden" name="sid" th:value="${student.sid}">
+        </form>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>分数</th>
+                    <th>电话</th>
+                    <th>学院</th>
+                    <th>志愿</th>
+                    <th>专业</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${student.account}">20164081101</td>
+                    <td th:text="${student.name}">张三</td>
+                    <td th:text="${student.grade}">0</td>
+                    <td th:text="${student.phone}">0</td>
+                    <td th:text="${student.college!=null?student.college.name:'未选择'}"></td>
+                    <td th:text="${((student.wish)==null || (student.wish)=='')?'未填写':(student.wish)}"></td>
+                    <td th:text="${(student.major)!=null ? (student.major.name) : '未分配'}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-primary" onclick="resetPwd()">重置密码</button>&nbsp;
+            <button type="button" class="btn btn-primary" onclick="resetCollege()">转&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院</button>&nbsp;
+            <button type="button" class="btn btn-primary" onclick="resetMajor()">转&nbsp;&nbsp;专&nbsp;&nbsp;业</button>&nbsp;
+        </div>
+    </div>
+</div>
 </body>
 </html>

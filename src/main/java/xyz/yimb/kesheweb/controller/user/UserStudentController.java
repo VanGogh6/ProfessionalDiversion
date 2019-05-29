@@ -5,12 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QPageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.yimb.kesheweb.entity.College;
+import xyz.yimb.kesheweb.entity.Major;
 import xyz.yimb.kesheweb.entity.Student;
+import xyz.yimb.kesheweb.service.CollegeService;
+import xyz.yimb.kesheweb.service.MajorService;
 import xyz.yimb.kesheweb.service.StudentService;
+import xyz.yimb.kesheweb.service.impl.MajorServiceImpl;
 import xyz.yimb.kesheweb.utils.WebUtils;
 
 import javax.servlet.ServletOutputStream;
@@ -25,6 +31,12 @@ import java.util.List;
 public class UserStudentController {
     @Autowired
     private StudentService studentServiceImpl;
+
+    @Autowired
+    private CollegeService collegeServiceImpl;
+
+    @Autowired
+    private MajorService majorServiceImpl;
 
     @RequestMapping("studentlist")
     public String getStudentList(String page, String size, HttpServletRequest req){
@@ -87,7 +99,11 @@ public class UserStudentController {
         return "forward:studentlist";
     }
 
-
+    /**
+     * 批量删除
+     * @param request
+     * @return
+     */
     @RequestMapping("deletebatch")
     public  String  deletebatch(HttpServletRequest request){
         String[] sids = request.getParameterValues("selectFlag");
@@ -99,6 +115,12 @@ public class UserStudentController {
         return "forward:studentlist";
     }
 
+    /**
+     * 导入数据
+     * @param file
+     * @param request
+     * @return
+     */
     @RequestMapping("import")
     public String importStudent(@RequestParam("file")   MultipartFile file, HttpServletRequest request){
         String filename = file.getOriginalFilename();
@@ -116,21 +138,131 @@ public class UserStudentController {
         return "forward:studentlist";
     }
 
-    //export
+    /**
+     * 导出数据
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("export")
     public String exportPre(HttpServletRequest request, HttpServletResponse response){
-        response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-disposition", "attachment;filename=" + "data.xlsx");
-        List<Student> list=studentServiceImpl.getAllStudent();
-        XSSFWorkbook wb= WebUtils.getHSSFWorkbook(list);
         try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition", "attachment;filename=" + "data.xlsx");
+            List<Student> list=studentServiceImpl.getAllStudent();
+            XSSFWorkbook wb= WebUtils.getHSSFWorkbook(list);
             ServletOutputStream out = response.getOutputStream();
             wb.write(out);
             out.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+
         }
         return "forward:studentlist";
     }
 
+    /**
+     * 按学号查找学生
+     * @param account
+     * @param request
+     * @return
+     */
+    @RequestMapping("search")
+    public String search(@Param("account") String account,HttpServletRequest request){
+        Student student=studentServiceImpl.getStuByAccount(account);
+        System.out.println(student);
+        request.setAttribute("student",student);
+        return "forward:/user/sete";
+    }
+
+    /**
+     * 重置密码
+     * @param sid
+     * @param request
+     * @return
+     */
+    @RequestMapping("resetPwd")
+    public String resetPwd(@Param("sid")Integer sid,HttpServletRequest request){
+        boolean b=studentServiceImpl.resetPwd(sid);
+        Student student=studentServiceImpl.getStuBySid(sid);
+        System.out.println(student);
+        request.setAttribute("student",student);
+        if (b){
+            request.setAttribute("msg","重置密码成功！");
+        }else {
+            request.setAttribute("msg","重置密码失败！");
+        }
+        return "forward:/user/sete";
+    }
+
+    /**
+     * 重置学院前置操作
+     * @param sid
+     * @param request
+     * @return
+     */
+    @RequestMapping("resetColPre")
+    public String resetColPre(@Param("sid")Integer sid,HttpServletRequest request){
+        Student student = studentServiceImpl.getStuBySid(sid);
+        List<College> list=collegeServiceImpl.getAll();
+        request.setAttribute("student",student);
+        request.setAttribute("list",list);
+        return "forward:/user/resPre";
+    }
+
+    /**
+     * 重置学院
+     * @param sid
+     * @param cid
+     * @param request
+     * @return
+     */
+    @RequestMapping("resetcollege")
+    public String resetcollege(@Param("sid") Integer sid,@Param("cid") Integer cid,HttpServletRequest request){
+        Student student = studentServiceImpl.getStuBySid(sid);
+        List<College> list=collegeServiceImpl.getAll();
+        request.setAttribute("student",student);
+        request.setAttribute("list",list);
+        boolean b=studentServiceImpl.updateCid(sid,cid);
+        boolean b2=studentServiceImpl.updateMidBySid(null,sid);//转院时清空自己的专业
+        if (b&&b2){
+            request.setAttribute("msg","成功");
+        }else {
+            request.setAttribute("msg","失败");
+        }
+        String account=student.getAccount();
+        return "forward:/user/search?account="+account;
+    }
+
+    /**
+     * 转专业前置
+     * @param sid
+     * @param request
+     * @return
+     */
+    @RequestMapping("resetMajorPre")
+    public String resetMajorPre(@Param("sid") Integer sid,HttpServletRequest request){
+        Student student = studentServiceImpl.getStuBySid(sid);
+        request.setAttribute("student",student);
+        return "forward:/user/resMajor";
+    }
+
+    /**
+     * 转专业
+     * @param sid
+     * @param mid
+     * @param request
+     * @return
+     */
+    @RequestMapping("resetmajor")
+    public String resetMajor(@Param("sid") Integer sid,@Param("mid") Integer mid,HttpServletRequest request){
+        boolean b=studentServiceImpl.updateMidBySid(mid,sid);
+        if (b){
+            request.setAttribute("msg","成功");
+        }else {
+            request.setAttribute("msg","失败");
+        }
+        Student student = studentServiceImpl.getStuBySid(sid);
+        String account=student.getAccount();
+        return "forward:/user/search?account="+account;
+    }
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h4 class="text-success mt-5">基本信息&nbsp;[[${msg}]]</h4>
+    <div th:if="${student!=null}" class="mt-5">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>分数</th>
+                <th>电话</th>
+                <th>学院</th>
+                <th>志愿</th>
+                <th>专业</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${student.account}">20164081101</td>
+                <td th:text="${student.name}">张三</td>
+                <td th:text="${student.grade}">0</td>
+                <td th:text="${student.phone}">0</td>
+                <td th:text="${student.college!=null?student.college.name:'未选择'}"></td>
+                <td th:text="${((student.wish)==null || (student.wish)=='')?'未填写':(student.wish)}"></td>
+                <td th:text="${(student.major)!=null ? (student.major.name) : '未分配'}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h5 class="text-success">选择学院</h5>
+        <form th:action="${#servletContext.contextPath}+'/user/resetcollege'" th:method="get" >
+            <input type="hidden" name="sid" th:value="${student.sid}">
+            <select th:if="${list!=null}" name="cid" class="custom-select-lg">
+                <option  th:each="college:${list}" th:value="${college.cid}">[[${college.name}]]</option>
+            </select>
+            <button type="submit" class="btn btn-primary btn-group-lg">提交</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

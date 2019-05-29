@@ -65,12 +65,14 @@ public class WebUtils {
         r.createCell(0).setCellValue("序号");
         r.createCell(1).setCellValue("学号");
         r.createCell(2).setCellValue("姓名");
+        r.createCell(3).setCellValue("分数");
         for (int i = 0; i < list.size(); i++) {
             XSSFRow row = sheet.createRow(i+1);
             Student s = list.get(i);
             row.createCell(0).setCellValue((i+1)+"");
             row.createCell(1).setCellValue(s.getAccount());
             row.createCell(2).setCellValue(s.getName());
+            row.createCell(3).setCellValue(s.getGrade());
         }
         return wb;
     }
