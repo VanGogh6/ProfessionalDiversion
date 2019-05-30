@@ -7,6 +7,8 @@ import xyz.yimb.kesheweb.repository.UserRepository;
 import xyz.yimb.kesheweb.service.UserService;
 import xyz.yimb.kesheweb.utils.WebUtils;
 
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,6 +24,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 
 

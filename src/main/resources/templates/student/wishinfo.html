@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h4 class="text-success mt-3">基本信息</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>分数</th>
+                <th>电话</th>
+                <th>学院</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${stu.account}"></td>
+                <td th:text="${stu.name}"></td>
+                <td th:text="${stu.grade}"></td>
+                <td th:text="${stu.phone}"></td>
+                <div th:if="${stu.college!=null}">
+                    <td th:text="${stu.college.name}"></td>
+                </div>
+                <div th:if="${stu.college==null}">
+                    <td>未选择学院</td>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+    <h4 class="text-success mt-3">志愿信息</h4>
+    <p th:if="${msg!=null}">[[${msg}]]</p>
+    <div th:if="${msg==null}">
+        <dl>
+            <dt class="text-primary">第一志愿</dt>
+            <dd>[[${info1}]]</dd>
+            <dt class="text-primary">第二志愿</dt>
+            <dd>[[${info2}]]</dd>
+            <dt class="text-primary">第三志愿</dt>
+            <dd>[[${info3}]]</dd>
+            <dt class="text-primary">第四志愿</dt>
+            <dd>[[${info4}]]</dd>
+        </dl>
+    </div>
+    <h4 class="text-success mt-3">确定专业</h4>
+    <p th:if="${stu.major==null}">学校还未分配专业</p>
+    <p th:if="${stu.major!=null}">[[${stu.major.name}]]</p>
+</div>
+</body>
+</html>

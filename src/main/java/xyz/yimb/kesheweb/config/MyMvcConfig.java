@@ -10,6 +10,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login.html").setViewName("/index");
+        registry.addViewController("/user/index").setViewName("/user/index");
+        registry.addViewController("/welcome").setViewName("/welcome");
         registry.addViewController("/user/importPre").setViewName("/user/student/import");
         registry.addViewController("/user/searchPre").setViewName("/user/student/searchupdate");
         registry.addViewController("/user/sete").setViewName("/user/student/searchupdate");
@@ -20,5 +22,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/user/major/list").setViewName("/user/major/list");
         registry.addViewController("/user/major/insert").setViewName("/user/major/insert");
         registry.addViewController("/user/major/updatenumber").setViewName("/user/major/updatenumber");
+        registry.addViewController("/user/user/list").setViewName("/user/user/list");
+        registry.addViewController("/student/index").setViewName("/student/index");
+        registry.addViewController("/student/updateWish").setViewName("/student/updateWish");
+        registry.addViewController("/student/wishinfo").setViewName("/student/wishinfo");
+        registry.addViewController("/student/updstu").setViewName("/student/updstu");
     }
 }

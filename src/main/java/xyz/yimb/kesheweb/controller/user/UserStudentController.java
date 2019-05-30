@@ -218,6 +218,7 @@ public class UserStudentController {
         request.setAttribute("list",list);
         boolean b=studentServiceImpl.updateCid(sid,cid);
         boolean b2=studentServiceImpl.updateMidBySid(null,sid);//转院时清空自己的专业
+        studentServiceImpl.updateWish(null,sid);//清空自己的志愿
         if (b&&b2){
             request.setAttribute("msg","成功");
         }else {

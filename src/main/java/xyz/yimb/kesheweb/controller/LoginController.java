@@ -28,12 +28,12 @@ public class LoginController {
             req.getSession().setAttribute("uid",user.getUid());
             req.getSession().setAttribute("user",user);
             req.getSession().setAttribute("username", user.getName());
-            return "/user/index";
+            return "redirect:/user/index";
         }else if (student!=null&&user==null){
             req.getSession().setAttribute("sid",student.getSid());
             req.getSession().setAttribute("student",student);
             req.getSession().setAttribute("username", student.getName());
-            return "/student/index";
+            return "redirect:/student/index";
         }
         req.setAttribute("msg","账号或密码错误");
         return "index";

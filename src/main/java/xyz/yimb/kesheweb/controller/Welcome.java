@@ -1,4 +1,4 @@
-package xyz.yimb.kesheweb.controller.welcome;
+package xyz.yimb.kesheweb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -10,12 +10,24 @@
     <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container mt-5">
-    <h3 class="text-success">选择导入的学生excel表格</h3>
-    <form action="" th:action="${#servletContext.contextPath}+'/user/import'" method="post" enctype="multipart/form-data">
-        <br><input type="file" name="file" /><br><br>
-        <input type="submit" />
-    </form>
+<div class="container">
+    <h5 class="m-3">所有管理员用户信息</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>账号</th>
+                <th>姓名</th>
+                <th>电话</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user:${list}">
+                <td th:text="${user.account}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.phone}"></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

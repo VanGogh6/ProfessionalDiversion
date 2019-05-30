@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function checkReset() {
+            var s1=document.getElementById("sel1").value;
+            var s2=document.getElementById("sel2").value;
+            var s3=document.getElementById("sel3").value;
+            var s4=document.getElementById("sel4").value;
+            if (s1!=s2 && s1!=s3 && s1!=s4 && s2!=s3 && s2!=s4 && s3!=s4){
+                if (confirm("确定填报?")){
+                    document.form1.submit();
+                }
+            }else{
+                alert("选择错误!志愿不能相同!")
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h4 class="mt-5 text-success">请选择志愿</h4>
+    <h5 th:if="${college==null}" class="text-danger">[[${msg}]]</h5>
+    <form th:name="form1" th:if="${college!=null && majors!=null}" th:action="${#servletContext.contextPath}+'/student/update'">
+        <div class="form-group  mt-3">
+            <label for="sel1" class="text-primary">第一志愿</label>
+            <select class="form-control" id="sel1" name="mid1">
+                <div th:each="m:${majors}">
+                    <option th:value="${m.mid}">[[${m.name}]]</option>
+                </div>
+            </select>
+        </div>
+        <div class="form-group  mt-3">
+            <label for="sel2" class="text-primary">第二志愿</label>
+            <select class="form-control" id="sel2" name="mid2">
+                <div th:each="m:${majors}">
+                    <option th:value="${m.mid}">[[${m.name}]]</option>
+                </div>
+            </select>
+        </div>
+        <div class="form-group  mt-3">
+            <label for="sel3" class="text-primary">第三志愿</label>
+            <select class="form-control" id="sel3" name="mid3">
+                <div th:each="m:${majors}">
+                    <option th:value="${m.mid}">[[${m.name}]]</option>
+                </div>
+            </select>
+        </div>
+        <div class="form-group  mt-3">
+            <label for="sel4" class="text-primary">第四志愿</label>
+            <select class="form-control" id="sel4" name="mid4">
+                <div th:each="m:${majors}">
+                    <option th:value="${m.mid}">[[${m.name}]]</option>
+                </div>
+            </select>
+        </div>
+        <button class="btn btn-success" type="button" onclick="checkReset()">确定填报</button>
+    </form>
+</div>
+</body>
+</html>

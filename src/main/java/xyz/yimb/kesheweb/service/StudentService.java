@@ -53,4 +53,8 @@ public interface StudentService {
     boolean updateCid(Integer sid, Integer cid);
 
     boolean updateMidBySid(Integer mid, Integer sid);
+
+    boolean updateWish(String wish, Integer sid);
+
+    boolean updNameAndPhone(String name, String phone, Integer sid);
 }

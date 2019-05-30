@@ -23,4 +23,12 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     @Modifying
     @Query(value = "update t_student set mid=?1 where sid=?2" ,nativeQuery = true)
     int updateMidBySid(Integer mid, Integer sid);
+
+    @Modifying
+    @Query(value = "update t_student set wish=?1 where sid=?2" ,nativeQuery = true)
+    int updateWish(String wish, Integer sid);
+
+    @Modifying
+    @Query(value = "update t_student set `name`=?1,phone=?2 where sid=?3" ,nativeQuery = true)
+    int updNameAndPhone(String name, String phone, Integer sid);
 }

@@ -101,4 +101,18 @@ public class StudentServiceImpl implements StudentService {
         return i>0;
     }
 
+    @Override
+    @Transactional
+    public boolean updateWish(String wish, Integer sid) {
+        int i=studentRepository.updateWish(wish,sid);
+        return i>0;
+    }
+
+    @Override
+    @Transactional
+    public boolean updNameAndPhone(String name, String phone, Integer sid) {
+        int i=studentRepository.updNameAndPhone(name,phone,sid);
+        return i>0;
+    }
+
 }

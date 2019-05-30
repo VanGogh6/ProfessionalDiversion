@@ -10,11 +10,18 @@
     <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container mt-5">
-    <h3 class="text-success">选择导入的学生excel表格</h3>
-    <form action="" th:action="${#servletContext.contextPath}+'/user/import'" method="post" enctype="multipart/form-data">
-        <br><input type="file" name="file" /><br><br>
-        <input type="submit" />
+<div class="container">
+    <h4 class="mt-3">修改个人信息</h4>
+    <form th:action="${#servletContext.contextPath}+'/student/upd'">
+        <div class="form-group">
+            <label for="t">姓名</label>
+            <input type="text" class="form-control" th:name="name" id="t" th:value="${stu.name}">
+        </div>
+        <div class="form-group">
+            <label for="p">电话</label>
+            <input type="text" class="form-control" th:name="phone"  id="p" th:value="${stu.phone}">
+        </div>
+        <button type="submit" class="btn btn-primary">确定</button>
     </form>
 </div>
 </body>

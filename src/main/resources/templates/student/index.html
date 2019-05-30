@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>专业分流填报</title>
+    <meta charset="utf-8">
+    <title>主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/asserts/layui/css/layui.css" th:href="@{/asserts/layui/css/layui.css}">
 </head>
-<body>
-专业分流填报
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">志愿填报</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img style="width: 60px;height: 60px;" th:src="@{/asserts/img/lolo.jpg}" src="/asserts/img/lolo.jpg" class="layui-nav-img">
+                    [[${session.username}]]
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href=""  target="menuFrame">修改密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="" th:href="${#servletContext.contextPath}+'/loginout'">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">我的志愿</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href=""  th:href="${#servletContext.contextPath}+'/student/infoPre'"    target="menuFrame">志愿信息</a></dd>
+                        <dd><a href=""  th:href="${#servletContext.contextPath}+'/student/wishPre'"  target="menuFrame">填报志愿</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">个人信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href=""  th:href="${#servletContext.contextPath}+'/student/updPre'"  target="menuFrame">修改信息</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <iframe id="menuFrame" name="menuFrame" th:src="${#servletContext.contextPath}+'/welcome'" src="/welcome" style="overflow:visible;"    scrolling="yes" frameborder="no" width="100%" height="100%">
+            <h1>欢迎登录专业填报系统！</h1>
+        </iframe>
+    </div>
+    <div class="layui-footer">
+        <p align="center">@CopyRight Email:wf520200@163.com</p>
+    </div>
+</div>
+<script src="/static/asserts/layui/layui.js" th:src="@{/asserts/layui/layui.js}"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>
 </body>
 </html>
