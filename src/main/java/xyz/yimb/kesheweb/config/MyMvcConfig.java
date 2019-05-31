@@ -1,14 +1,17 @@
 package xyz.yimb.kesheweb.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import xyz.yimb.kesheweb.component.LoginHandlerInterceptor;
 
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/admin").setViewName("/index");
         registry.addViewController("/index").setViewName("/index");
         registry.addViewController("/login.html").setViewName("/index");
         registry.addViewController("/user/index").setViewName("/user/index");
@@ -34,5 +37,14 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/student/updPwdPre").setViewName("/student/updpwd");
         registry.addViewController("/student/updpwd").setViewName("/student/updpwd");
         registry.addViewController("/user/user/infolist").setViewName("/user/user/infolist");
+    }
+
+    /**
+     * 登录拦截
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/login","/index","/welcome","/login.html","/admin","/loginout");
     }
 }

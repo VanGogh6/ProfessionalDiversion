@@ -12,6 +12,7 @@ import xyz.yimb.kesheweb.service.StudentService;
 import xyz.yimb.kesheweb.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -52,7 +53,8 @@ public class LoginController {
 
     @RequestMapping("loginout")
     public String loginout(HttpServletRequest request){
-        request.getSession().invalidate();;
+        HttpSession session = request.getSession();
+        session.invalidate();
         return "redirect:/index";
     }
 }
