@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3 class="mt-5 text-success">个人信息</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>账号</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[${session.user.account}]]</td>
+                    <td>[[${session.user.name}]]</td>
+                    <td>[[${session.user.phone}]]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

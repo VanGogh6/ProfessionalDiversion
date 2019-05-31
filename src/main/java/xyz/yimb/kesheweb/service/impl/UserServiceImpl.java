@@ -2,6 +2,7 @@ package xyz.yimb.kesheweb.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.yimb.kesheweb.entity.User;
 import xyz.yimb.kesheweb.repository.UserRepository;
 import xyz.yimb.kesheweb.service.UserService;
@@ -29,6 +30,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public boolean updPwd(String password, Integer uid) {
+        int i=userRepository.updPwd(password,uid);
+        return i>0;
     }
 
 

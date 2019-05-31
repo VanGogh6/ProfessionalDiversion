@@ -16,8 +16,8 @@
                     [[${session.username}]]
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="" target="menuFrame">基本资料</a></dd>
-                    <dd><a href=""  target="menuFrame">安全设置</a></dd>
+                    <dd><a href="" th:href="${#servletContext.contextPath}+'/user/user/one'" target="menuFrame">基本资料</a></dd>
+                    <dd><a href="" th:href="${#servletContext.contextPath}+'/user/updPre'"  target="menuFrame">修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a  th:href="${#servletContext.contextPath}+'/loginout'" href="loginout">退出</a></li>
@@ -40,7 +40,7 @@
                     <a href="javascript:;">专业管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" th:href="${#servletContext.contextPath}+'/user/major/listAll'" target="menuFrame">显示信息</a></dd>
-                        <dd><a href="javascript:;"  target="menuFrame">查询修改</a></dd>
+                        <dd><a href="javascript:;" th:href="${#servletContext.contextPath}+'/user/major/auto'" target="menuFrame">分配专业</a></dd>
                     </dl>
                 </li>
 
@@ -61,8 +61,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">日志管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"  target="menuFrame">管理员日志</a></dd>
-                        <dd><a href="javascript:;"  target="menuFrame">用户日志</a></dd>
+                        <dd><a href="javascript:;" th:href="${#servletContext.contextPath}+'/infolist'"  target="menuFrame">用户日志</a></dd>
                     </dl>
                 </li>
             </ul>

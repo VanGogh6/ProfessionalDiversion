@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h3 class="mt-5 text-success">专业分流&nbsp;&nbsp;&nbsp;[[${msg}]]</h3>
+    <p class="text-danger">亲爱的管理员你好,你即将进行一键分流管理,你的点击决定各位学子的去向哦....确定请点击下边按钮....</p>
+    <a class="btn btn-success" th:href="${#servletContext.contextPath}+'/user/major/automajor'" onclick="return confirm('确定一键分配专业?')">一键分配专业</a>
+</div>
+</body>
+</html>

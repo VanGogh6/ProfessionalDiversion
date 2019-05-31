@@ -4,24 +4,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import xyz.yimb.kesheweb.entity.Info;
 import xyz.yimb.kesheweb.entity.Student;
 import xyz.yimb.kesheweb.entity.User;
+import xyz.yimb.kesheweb.service.InfoService;
 import xyz.yimb.kesheweb.service.StudentService;
 import xyz.yimb.kesheweb.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/")
 public class LoginController {
+
     @Autowired
     private UserService userServiceImpl;
 
     @Autowired
     private StudentService studentServiceImpl;
 
+    @Autowired
+    private InfoService infoServiceImpl;
+
     @PostMapping("login")
     public String login(String account, String password, HttpServletRequest req){
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = userServiceImpl.getByAccountAndPassword(account, password);
         Student student = studentServiceImpl.getByAccountAndPassword(account, password);
         if (user!=null&&student==null){
@@ -39,10 +49,10 @@ public class LoginController {
         return "index";
     }
 
-    //loginout
+
     @RequestMapping("loginout")
     public String loginout(HttpServletRequest request){
         request.getSession().invalidate();;
-        return "index";
+        return "redirect:/index";
     }
 }

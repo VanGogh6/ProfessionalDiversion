@@ -42,6 +42,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", wish='" + wish + '\'' +
+                ", grade='" + grade + '\'' +
                 ", cid=" + cid +
                 ", mid=" + mid +
                 '}';

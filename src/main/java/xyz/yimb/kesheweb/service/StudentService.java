@@ -57,4 +57,7 @@ public interface StudentService {
     boolean updateWish(String wish, Integer sid);
 
     boolean updNameAndPhone(String name, String phone, Integer sid);
+
+    boolean updPwd(String pw, Integer sid);
+
 }

@@ -17,4 +17,6 @@ public interface MajorService {
     Major getMajorByMid(Integer mid);
 
     boolean updateMjorNumberByCid(Integer number, Integer mid);
+
+    boolean updateMjorNowNmber(Integer nownumber, Integer mid);
 }

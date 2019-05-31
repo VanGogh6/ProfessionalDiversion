@@ -11,4 +11,6 @@ public interface UserService {
     void save(User user);
 
     List<User> getAll();
+
+    boolean updPwd(String password, Integer uid);
 }

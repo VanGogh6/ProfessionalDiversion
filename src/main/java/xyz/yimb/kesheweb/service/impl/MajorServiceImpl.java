@@ -53,4 +53,11 @@ public class MajorServiceImpl implements MajorService {
         int i=majorRepository.updateNumber(number,mid);
         return i>0;
     }
+
+    @Override
+    @Transactional
+    public boolean updateMjorNowNmber(Integer nownumber, Integer mid) {
+        int i=majorRepository.updateMjorNowNmber(nownumber,mid);
+        return i>0;
+    }
 }

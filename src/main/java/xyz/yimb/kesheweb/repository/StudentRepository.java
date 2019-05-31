@@ -31,4 +31,6 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     @Modifying
     @Query(value = "update t_student set `name`=?1,phone=?2 where sid=?3" ,nativeQuery = true)
     int updNameAndPhone(String name, String phone, Integer sid);
+
+
 }

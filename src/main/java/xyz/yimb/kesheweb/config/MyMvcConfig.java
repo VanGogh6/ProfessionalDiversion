@@ -9,9 +9,11 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/index").setViewName("/index");
         registry.addViewController("/login.html").setViewName("/index");
         registry.addViewController("/user/index").setViewName("/user/index");
         registry.addViewController("/welcome").setViewName("/welcome");
+        registry.addViewController("/user/user/one").setViewName("/user/user/one");
         registry.addViewController("/user/importPre").setViewName("/user/student/import");
         registry.addViewController("/user/searchPre").setViewName("/user/student/searchupdate");
         registry.addViewController("/user/sete").setViewName("/user/student/searchupdate");
@@ -22,10 +24,15 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/user/major/list").setViewName("/user/major/list");
         registry.addViewController("/user/major/insert").setViewName("/user/major/insert");
         registry.addViewController("/user/major/updatenumber").setViewName("/user/major/updatenumber");
+        registry.addViewController("/user/major/auto").setViewName("/user/major/auto");
         registry.addViewController("/user/user/list").setViewName("/user/user/list");
+        registry.addViewController("/user/updPre").setViewName("/user/user/upd");
         registry.addViewController("/student/index").setViewName("/student/index");
         registry.addViewController("/student/updateWish").setViewName("/student/updateWish");
         registry.addViewController("/student/wishinfo").setViewName("/student/wishinfo");
         registry.addViewController("/student/updstu").setViewName("/student/updstu");
+        registry.addViewController("/student/updPwdPre").setViewName("/student/updpwd");
+        registry.addViewController("/student/updpwd").setViewName("/student/updpwd");
+        registry.addViewController("/user/user/infolist").setViewName("/user/user/infolist");
     }
 }

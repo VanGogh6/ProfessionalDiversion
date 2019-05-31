@@ -81,7 +81,6 @@ public class StudentTest {
     }
 
     @Test
-    @Transactional
     public void t5(){
 
     }

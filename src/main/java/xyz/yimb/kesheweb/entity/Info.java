@@ -11,7 +11,16 @@ import javax.persistence.Table;
 @Table(name = "t_info")
 public class Info {
     @Id
-    private String id;
-    private long uid;
+    private Integer id;
+    private Integer uid;
     private String loginTime;
+
+    @Override
+    public String toString() {
+        return "Info{" +
+                "id='" + id + '\'' +
+                ", uid=" + uid +
+                ", loginTime='" + loginTime + '\'' +
+                '}';
+    }
 }

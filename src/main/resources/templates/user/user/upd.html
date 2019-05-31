@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maxinum-scale=1,width=device-width">
+    <link rel="stylesheet" th:href="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/css/bootstrap.min.css'" href="/keshe2019/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/jquery/3.4.1/jquery.min.js'" src="/keshe2019/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/popper.js/1.14.3/esm/popper.min.js'" src="/keshe2019/webjars/popper.js/1.14.3/esm/popper.min.js"></script>
+    <script type="text/javascript" th:src="${#servletContext.contextPath}+'/webjars/bootstrap/4.3.1/js/bootstrap.min.js'" src="/keshe2019/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function check() {
+            var pw=document.getElementById("pw").value;
+            var pw1=document.getElementById("pw1").value;
+            var pw2=document.getElementById("pw2").value;
+            if ( pw1!=pw2 || pw=="" || pw2=="" || pw1==""){
+                alert("输入错误")
+            }else {
+                document.form1.submit();
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h5 class="text-success mt-5">修改密码&nbsp;&nbsp;&nbsp;[[${msg}]]</h5>
+    <form th:name="form1" th:action="${#servletContext.contextPath}+'/user/updpass'">
+        <div class="form-group">
+            <label class="text-primary">输入原密码</label>
+            <input type="password" id="pw"  th:name="pwd"  class="input-group">
+        </div>
+        <div class="form-group">
+            <label class="text-primary">输入新密码</label>
+            <input type="password" id="pw1" th:name="pwd1" class="input-group">
+        </div>
+        <div class="form-group">
+            <label class="text-primary">再次输入新密码</label>
+            <input type="password" id="pw2" th:name="pwd2" class="input-group">
+        </div>
+        <button class="btn btn-primary" onclick="check()">确定</button>
+    </form>
+</div>
+</body>
+</html>

@@ -14,4 +14,8 @@ public interface MajorRepository extends JpaRepository<Major,Integer> {
     @Modifying
     @Query(value = "update t_major set `number`=?1 where mid=?2",nativeQuery = true)
     int updateNumber(Integer number, Integer mid);
+
+    @Modifying
+    @Query(value = "update t_major set `nownumber`=?1 where mid=?2",nativeQuery = true)
+    int updateMjorNowNmber(Integer nownumber, Integer mid);
 }

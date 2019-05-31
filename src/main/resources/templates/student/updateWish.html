@@ -26,7 +26,7 @@
 </head>
 <body>
 <div class="container">
-    <h4 class="mt-5 text-success">请选择志愿</h4>
+    <h4 class="mt-5 text-success">请选择志愿&nbsp;&nbsp;&nbsp;[[${msg}]]</h4>
     <h5 th:if="${college==null}" class="text-danger">[[${msg}]]</h5>
     <form th:name="form1" th:if="${college!=null && majors!=null}" th:action="${#servletContext.contextPath}+'/student/update'">
         <div class="form-group  mt-3">

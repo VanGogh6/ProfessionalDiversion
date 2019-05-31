@@ -115,4 +115,12 @@ public class StudentServiceImpl implements StudentService {
         return i>0;
     }
 
+    @Override
+    @Transactional
+    public boolean updPwd(String pw, Integer sid) {
+        int i = studentRepository.updatePwd(pw, sid);
+        return i>0;
+    }
+
+
 }

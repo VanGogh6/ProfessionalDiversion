@@ -9,6 +9,7 @@ import xyz.yimb.kesheweb.entity.Major;
 import xyz.yimb.kesheweb.entity.Student;
 import xyz.yimb.kesheweb.service.MajorService;
 import xyz.yimb.kesheweb.service.StudentService;
+import xyz.yimb.kesheweb.utils.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -46,10 +47,10 @@ public class StudentStudentController {
         String mid2 = req.getParameter("mid2");
         String mid3 = req.getParameter("mid3");
         String mid4 = req.getParameter("mid4");
-        String wish=mid1+":"+mid2+":"+mid3+":"+mid4;
+        String wish=mid1+":"+mid2+":"+mid3+":"+mid4+":";
         boolean b=studentServiceImpl.updateWish(wish,sid);
         if (b){
-            System.out.println(3);
+            req.setAttribute("msg","填报成功!");
         }
         return "forward:wishPre";
     }
@@ -92,5 +93,22 @@ public class StudentStudentController {
         Integer sid=(Integer)req.getSession().getAttribute("sid");
         boolean b=studentServiceImpl.updNameAndPhone(name,phone,sid);
         return "forward:infoPre";
+    }
+
+    @RequestMapping("updpass")
+    public String updPass(@Param("pwd") String pwd,@Param("pwd1") String pwd1,HttpServletRequest request){
+        Student stu=(Student)request.getSession().getAttribute("student");
+        String pw0 = WebUtils.getMD5(pwd);
+        if (pw0.equals(stu.getPassword())){
+            Integer sid = stu.getSid();
+            String pw= WebUtils.getMD5(pwd1);
+            boolean b=studentServiceImpl.updPwd(pw,sid);
+            if (b){
+                request.setAttribute("msg","修改密码成功");
+            }
+        }else {
+            request.setAttribute("msg","修改密码失败,原密码错误!");
+        }
+        return "forward:/student/updpwd";
     }
 }

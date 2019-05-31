@@ -16,7 +16,7 @@
                     [[${session.username}]]
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href=""  target="menuFrame">修改密码</a></dd>
+                    <dd><a href="" th:href="${#servletContext.contextPath}+'/student/updPwdPre'"  target="menuFrame">修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="" th:href="${#servletContext.contextPath}+'/loginout'">退出</a></li>
