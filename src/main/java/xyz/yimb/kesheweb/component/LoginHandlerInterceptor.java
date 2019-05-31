@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("进入拦截器");
         HttpSession session=request.getSession();
         String servletPath = request.getServletPath();//请求地址
         String path=request.getContextPath();//上下文项目路径

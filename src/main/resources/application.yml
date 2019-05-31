@@ -5,24 +5,24 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
+    druid.initialSize: 5
+    druid.minIdle: 5
+    druid.maxActive: 20
+    druid.maxWait: 60000
+    druid.timeBetweenEvictionRunsMillis: 60000
+    druid.minEvictableIdleTimeMillis: 300000
+    druid.validationQuery: SELECT 1 FROM DUAL
+    druid.testWhileIdle: true
+    druid.testOnBorrow: false
+    druid.testOnReturn: false
+    druid.poolPreparedStatements: true
       #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-    filters: stat,wall,log4j
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-  jpa:
-    show-sql: true
+    druid.filters: stat,wall,log4j
+    druid.maxPoolPreparedStatementPerConnectionSize: 20
+    druid.useGlobalDataSourceStat: true
+    druid.connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#  jpa:
+#    show-sql: true
 #    hibernate:
 #      ddl-auto: update
 
