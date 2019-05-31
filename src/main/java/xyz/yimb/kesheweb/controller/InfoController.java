@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class InfoController {
 
     @Autowired
