@@ -10,7 +10,7 @@ typora-root-url: image
 
 ### 登录界面
 
-![TIM截图20190531230958](tree/master/image/TIM截图20190531230958.png)
+![TIM截图20190531230958](/image/TIM截图20190531230958.png)
 
 ### 输入账号admin，密码1登录管理界面，输入学生账号进入学界面
 
