@@ -16,11 +16,11 @@ typora-root-url: image
 
 - 管理员界面
 
-![TIM截图20190531231423](https://github.com/VanGogh6/kesheweb/edit/master/TIM截图20190531231423.png)
+![TIM截图20190531231423](/image/TIM截图20190531231423.png)
 
 -  学生界面
 
-![TIM截图20190531231718](/TIM截图20190531231718.png)
+![TIM截图20190531231718](/image//TIM截图20190531231718.png)
 
 ### 运行方式
 
