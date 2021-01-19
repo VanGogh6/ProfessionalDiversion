@@ -18,9 +18,11 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         String path=request.getContextPath();//上下文项目路径
         User user=(User)session.getAttribute("user");
         Student student=(Student)session.getAttribute("student");
-        if ((user!=null && servletPath.startsWith("/user"))||(student!=null && servletPath.startsWith("/student"))){
+        if (user!=null){
             return true;
-        }else{
+        }else if(student!=null){
+            return true;
+        }else {
             request.setAttribute("msg","请先登录");
             response.sendRedirect(path+"/");//重定向
             return false;

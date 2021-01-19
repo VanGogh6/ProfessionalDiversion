@@ -12,7 +12,7 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     Student getByAccount(String account);
 
     @Modifying
-    @Query(value = "update t_student set password=?1 where sid=?2",nativeQuery = true)//nativeQuery开启本地化sql
+    @Query(value = "update t_student set password=?1 where sid=?2",nativeQuery = true)
     int updatePwd(String password,Integer sid);
 
     @Modifying

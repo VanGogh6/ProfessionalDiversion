@@ -33,8 +33,16 @@ public class LoginController {
     @PostMapping("login")
     public String login(String account, String password, HttpServletRequest req){
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        User user = userServiceImpl.getByAccountAndPassword(account, password);
-        Student student = studentServiceImpl.getByAccountAndPassword(account, password);
+        User user = null;
+        try {
+            user = userServiceImpl.getByAccountAndPassword(account, password);
+        } catch (Exception e) {
+        }
+        Student student = null;
+        try {
+            student = studentServiceImpl.getByAccountAndPassword(account, password);
+        } catch (Exception e) {
+        }
         if (user!=null&&student==null){
             req.getSession().setAttribute("uid",user.getUid());
             req.getSession().setAttribute("user",user);
